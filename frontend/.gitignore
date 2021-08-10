@@ -1,0 +1,28 @@
+/target/
+!.mvn/wrapper/maven-wrapper.jar
+/tech-blog-fronts/node
+/tech-blog-fronts/node_modules
+/tech-blog-fronts/dist
+
+### STS ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+
+### NetBeans ###
+/nbproject/private/
+/build/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
