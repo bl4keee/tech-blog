@@ -1,9 +1,18 @@
 <div class="center">
-  <ngx-file-drop dropZoneLabel="Drop files here" (onFileDrop)="dropped($event)"
-                 (onFileOver)="fileOver($event)" (onFileLeave)="fileLeave($event)">
-    <ng-template ngx-file-drop-content-tmp let-openFileSelector="openFileSelector">
-      Drag and drop video in this section (or)
-      <button type="button" (click)="openFileSelector()">Browse Files</button>
+  <div>Upload</div>
+  <ngx-file-drop dropZoneLabel="Drop files here"
+                 class="file-drop"
+                 (onFileDrop)="dropped($event)"
+                 (onFileOver)="fileOver($event)"
+                 (onFileLeave)="fileLeave($event)">
+    <ng-template ngx-file-drop-content-tmp
+                 let-openFileSelector="openFileSelector">
+      Drop your file(s) here or
+      <button mat-button
+              color="primary"
+              [disableRipple]="true"
+              (click)="openFileSelector()">browse</button>
+      <div>Max. File Size: 10MB</div>
     </ng-template>
   </ngx-file-drop>
   <div class="upload-table">
