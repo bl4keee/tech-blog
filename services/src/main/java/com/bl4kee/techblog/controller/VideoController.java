@@ -1,5 +1,6 @@
 package com.bl4kee.techblog.controller;
 
+import com.bl4kee.techblog.dto.VideoDTO;
 import com.bl4kee.techblog.service.VideoService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -17,6 +18,12 @@ public class VideoController {
     @ResponseStatus(HttpStatus.CREATED)
     public void uploadVideo(@RequestParam("file")MultipartFile file) {
         videoService.uploadVideo(file);
+    }
+
+    @PutMapping
+    @ResponseStatus(HttpStatus.OK)
+    public VideoDTO editVideoMetadata(@RequestBody VideoDTO videoDTO) {
+        return videoService.editVideoMetadata(videoDTO);
     }
 
     @GetMapping

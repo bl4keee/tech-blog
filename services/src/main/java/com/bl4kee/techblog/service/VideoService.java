@@ -1,5 +1,6 @@
 package com.bl4kee.techblog.service;
 
+import com.bl4kee.techblog.dto.VideoDTO;
 import com.bl4kee.techblog.model.Video;
 import com.bl4kee.techblog.repository.VideoRepository;
 import lombok.RequiredArgsConstructor;
@@ -18,6 +19,20 @@ public class VideoService {
         Video video = createVideoWithUrl(videoUrl);
 
         videoRepository.save(video);
+    }
+
+    public VideoDTO editVideoMetadata(VideoDTO videoDTO) {
+        Video savedVideo = videoRepository.findById(videoDTO.getId())
+                .orElseThrow(() -> new IllegalArgumentException("Cannot find video by id - " + videoDTO.getId()));
+
+        savedVideo.setTitle(videoDTO.getTitle());
+        savedVideo.setDescription(videoDTO.getDescription());
+        savedVideo.setTags(videoDTO.getTags());
+        savedVideo.setThumbnailUrl(videoDTO.getThumbnailUrl());
+        savedVideo.setVideoStatus(videoDTO.getVideoStatus());
+        videoRepository.save(savedVideo);
+
+        return videoDTO;
     }
 
     private Video createVideoWithUrl(String url) {
