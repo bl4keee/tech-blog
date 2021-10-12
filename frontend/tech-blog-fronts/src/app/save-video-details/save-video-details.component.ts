@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {FormControl, FormGroup} from "@angular/forms";
+import {COMMA, ENTER} from "@angular/cdk/keycodes";
+import {MatChipInputEvent} from "@angular/material/chips/chip-input";
 
 @Component({
   selector: 'app-save-video-details',
@@ -12,6 +14,11 @@ export class SaveVideoDetailsComponent implements OnInit {
   title: FormControl = new FormControl('');
   description: FormControl = new FormControl('');
   videoStatus: FormControl = new FormControl('');
+  selectable = true;
+  removable = true;
+  addOnBlur = true;
+  readonly separatorKeysCodes = [ENTER, COMMA] as const;
+  tags: string[] = [];
 
   constructor() {
     this.saveVideoDetailsForm = new FormGroup({
@@ -24,4 +31,19 @@ export class SaveVideoDetailsComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  add(event: MatChipInputEvent): void {
+    const value = (event.value || '').trim();
+    if (value) {
+      this.tags.push(value);
+    }
+    event.input.value = "";
+  }
+
+  remove(tag: string): void {
+    const index = this.tags.indexOf(tag);
+
+    if (index >= 0) {
+      this.tags.splice(index, 1);
+    }
+  }
 }
